@@ -2,6 +2,12 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
+//import salutes
+const salute = require('./public/salute/salute');
+
+salute._english();
+salute._russian();
+salute._spanish();
 
 
 // Routing
@@ -24,3 +30,5 @@ app.use((req, res, next) => {
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
 });
+
+
