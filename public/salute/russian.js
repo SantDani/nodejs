@@ -1,6 +1,8 @@
+const configuration = require('./salute.json');
+
 // salute/english.js
 const salute = function () {
-    console.log('привет!');
+    console.log(configuration.russian);
 }
 
 module.exports = salute;
