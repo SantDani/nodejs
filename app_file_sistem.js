@@ -1,5 +1,9 @@
 const fs = require('fs');
-// synchronized call
-const text = fs.readFileSync(__dirname + '/fruits.js', 'utf8');
+// asynchronous call
+fs.readFile(__dirname + '/fruits.js', 'utf8', function (error, data){
+    console.log('asynchronous call')
+    console.log(data);
 
-console.log(text);
+});
+
+console.log('I print first because reaFile is asynchronous call');
