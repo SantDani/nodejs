@@ -1,36 +1,10 @@
-const express = require("express");
-const app = express();
-const port = 3000;
+const http = require('http');
 
-//import salutes
-const salute = require('./public/salute/salute');
+const myServer = http.createServer(function (request, response){
 
-salute._english();
-salute._russian();
-salute._spanish();
-
-
-
-
-// Routing
-app.get("/", (req, res) => {
-    res.send("Hello World!");
+    response.writeHead(200, {'Content-Type' : 'text/plain'});
+    // .end() close and send response
+    response.end('Hello World! This is OP.');
 });
 
-app.use(express.static(__dirname + "/public"));
-
-app.get("/contacto", (req, res) => {
-    res.send("ruta de contacto" + __dirname);
-});
-
-app.use((req, res, next) => {
-    // res.status(404).send("Sorry cant find that!");
-    res.status(404).sendFile(__dirname + "/public/404.html");
-});
-
-
-app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
-});
-
-
+myServer.listen(1111, '127.0.0.1');
