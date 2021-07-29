@@ -1,9 +1,21 @@
 const fs = require('fs');
+const file = __dirname + '/data/plrabn12.txt';
+
+// size 16kb
+const buffer = 16 * 1024;
+
 // asynchronous call
-fs.readFile(__dirname + '/fruits.js', 'utf8', function (error, data){
-    console.log('asynchronous call')
-    console.log(data);
+const steam_reading = fs.createReadStream(file, {encoding: 'utf8', highWaterMark: buffer});
 
-});
+/**
+ * this Call back reading, It's notify when is read 16kb
+ */
 
+steam_reading.on('data', function (buffer){
+    console.log(buffer.length + '************************************************************');
+    console.log(buffer.length + '************************************************************');
+    console.log(buffer.length + '************************************************************');
+    console.log(buffer.length + '************************************************************');
+    console.log(buffer);
+})
 console.log('I print first because reaFile is asynchronous call');
