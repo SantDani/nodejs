@@ -1,28 +1,25 @@
 const fs = require('fs');
-const file = __dirname + '/data/plrabn12.txt';
+const zlib = require('zlib');
 
-// size 16kb
+
+const file_data = __dirname + '/data/plrabn12.txt';
+const file_result = __dirname + '/data/output_console.txt';
+const file_compressed = __dirname + '/data/file_compressed.txt.gz'
+const gzip = zlib.createGzip();
+
+// buffer size 16kb
 const buffer = 16 * 1024;
 
-// asynchronous call
-const steam_reading = fs.createReadStream(file, {encoding: 'utf8', highWaterMark: buffer});
-
-const file_result = __dirname + '/data/output_console.txt';
-
+const stream_Read = fs.createReadStream(file_data,
+    {encoding: 'utf8', highWaterMark: buffer});
 const stream_writing = fs.createWriteStream(file_result);
+const stream_compressed_writing = fs.createWriteStream(file_compressed);
 
-/**
- * this Call back reading, It's notify when is read 16kb and buffer is full for write in output_console.txt
- */
 
-steam_reading.on('data', function (buffer){
-    // console.log(buffer.length + '************************************************************');
-    // console.log(buffer.length + '************************************************************');
-    // console.log(buffer.length + '************************************************************');
-    // console.log(buffer.length + '************************************************************');
-    console.log(buffer);
-    stream_writing.write(buffer);
-})
-console.log('I print first because reaFile is asynchronous call');
+// This emits the stream of reading. Emits when buffer is full.
+stream_Read.pipe(stream_writing);
+
+// This write the file compressed
+stream_Read.pipe(gzip).pipe(stream_compressed_writing);
 
 
