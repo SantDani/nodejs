@@ -1,0 +1,6 @@
+{
+  "content" : [
+    { "name" : "%title%", "value" : "Este es el titulo de la pagina de not found." },
+    { "name" : "%text%", "value" : "Este es el contenido de la pagina de not found." }
+  ]
+}
