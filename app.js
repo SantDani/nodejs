@@ -1,20 +1,33 @@
+'use strict'
+
 const http = require('http');
 const fs = require('fs');
 
 const fileHtml = __dirname + '/hello_world.tpl';
-const title = 'Welcome to league of Title';
-const text = 'Welcome to league of text';
+const json_content_helloWorld = __dirname + '/data/json/hello_world.json';
 
 const TITLE = '%title%';
 const TEXT = '%text%';
 
+
+
+
+
+// console.log(JSON.parse(fs.readFileSync(__dirname + '/data/json/hello_world.json')));
+// let content = JSON.parse(fs.readFileSync(__dirname + '/data/json/hello_world.json').toString()).content;
+
+// console.log(content);
 const myServer = http.createServer(function (request, response){
     
     // It's important the header with text/html. It's need the browser to know is HTML
     response.writeHead(200, {'Content-Type' : 'text/html'});
-    const html = fs.readFileSync(fileHtml).toString()
-        .replace(TITLE, title)
-        .replace(TEXT, text);
+    let html = fs.readFileSync(fileHtml).toString();
+    let contentJSON = fs.readFileSync(json_content_helloWorld);
+    let content_helloWorld = JSON.parse(contentJSON).content;
+
+    content_helloWorld.forEach(function(content){
+        html = html.replace(content.name, content.value);
+    });
     // .end() close and send response
     response.end(html);
 });

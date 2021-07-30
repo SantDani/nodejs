@@ -1,0 +1,6 @@
+{
+  "content" : [
+    { "name" : "%title%", "value" : "This is a tile from JSON" },
+    { "name" : "%text%", "value" : "This is a text from JSON" }
+  ]
+}
