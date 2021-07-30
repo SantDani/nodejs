@@ -6,17 +6,6 @@ const fs = require('fs');
 const fileHtml = __dirname + '/hello_world.tpl';
 const json_content_helloWorld = __dirname + '/data/json/hello_world.json';
 
-const TITLE = '%title%';
-const TEXT = '%text%';
-
-
-
-
-
-// console.log(JSON.parse(fs.readFileSync(__dirname + '/data/json/hello_world.json')));
-// let content = JSON.parse(fs.readFileSync(__dirname + '/data/json/hello_world.json').toString()).content;
-
-// console.log(content);
 const myServer = http.createServer(function (request, response){
     
     // It's important the header with text/html. It's need the browser to know is HTML
