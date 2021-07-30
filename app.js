@@ -9,18 +9,8 @@ const app = express();
 app.use('/css', express.static(__dirname + '/static/css'));
 
 
-app.get('/champ/:id/', function(req, res) {
-    res.send(`
-        <html>
-            <head>
-                <!-- Import main.css-->
-                <link rel="stylesheet" href="/css/main.css" />
-            </head>
-            <body>
-                El campeon es ${req.params.id}
-            </body>
-        </html>
-    `);
+app.get('/champ/:id', function(req, res) {
+    res.render('champ.ejs', {id: req.params.id})
 });
 
 // go to the URL http://localhost:3000/champ/nami
