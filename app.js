@@ -47,3 +47,10 @@ const myServer = http.createServer(function (request, response){
 });
 
 myServer.listen(1111, '127.0.0.1');
+
+const moment = require('moment');
+
+moment.locale('es');
+moment.weekdays(true).forEach(function(dia){
+    console.log(dia);
+});
