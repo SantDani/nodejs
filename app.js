@@ -5,15 +5,16 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.get('/', function(request, response) {
-    response.send(`
+app.get('/champ/:id/', function(req, res) {
+    res.send(`
         <html>
             <head></head>
             <body>
-                <p>Welcome to Home!</p>
+                El campeon es ${req.params.id}
             </body>
         </html>
     `);
 });
 
+// go to the URL http://localhost:3000/champ/nami
 app.listen(port);
